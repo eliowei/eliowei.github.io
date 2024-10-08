@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css"
+    integrity="sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw=="
+    crossorigin="anonymous" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: black;
+      scrollbar-color: #ccc transparent;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    /* 側邊選單 */
+    #sidebar {
+      width: 13%;
+      height: calc(100vh - 70px);
+      position: fixed;
+      left: 0;
+      top: 70px;
+      background: black;
+      color: white;
+      overflow-y: scroll;
+      padding: 10px;
+      scrollbar-color: transparent transparent;
+      scrollbar-width: thin;
+
+      ul {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #333;
+
+        &:nth-child(2)>li:nth-child(1) {
+          padding-left: 10px;
+        }
+
+        &:nth-child(2),
+        &:nth-child(7) {
+          padding-top: 10px;
+        }
+      }
+
+      h3 {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        margin-left: 10px;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        color: white;
+
+        &:hover {
+          background: #333;
+          border-radius: 5px;
+        }
+
+        i {
+          margin-right: 24px;
+          margin-left: 10px;
+        }
+      }
+
+      &:hover {
+        scrollbar-color: #666 transparent;
+      }
+    }
+
+    /* 內容 */
+    #content {
+      width: 87%;
+      margin-left: 15%;
+      margin-top: 6.5%;
+      margin-bottom: 1%;
+      background: black;
+      font-size: 0;
+      padding-top: 24px;
+
+      .card {
+        width: 18%;
+        height: 100%;
+        /* border: 1px solid white; */
+        display: inline-block;
+        margin: 0 10px;
+        padding: 0 5px;
+        vertical-align: top;
+        margin-top: 20px;
+        font-size: 0;
+        white-space: nowrap;
+        cursor: pointer;
+
+        .card-img {
+          border: 1px solid black;
+
+          img {
+            width: 100%;
+            border-radius: 10px;
+          }
+        }
+
+        .card-info {
+          /* border: 1px solid blue; */
+          display: inline-block;
+          width: 100%;
+          margin-top: 5px;
+
+          .author-img {
+            /* border: 1px solid purple; */
+
+            width: 1.9rem;
+            display: inline-block;
+            vertical-align: top;
+
+            img {
+              width: 100%;
+              border-radius: 50%;
+            }
+          }
+
+          .card-text {
+            display: inline-block;
+            /* border: 1px solid aqua; */
+            width: 75%;
+            white-space: normal;
+
+            .title {
+              color: white;
+              font-size: 1rem;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              text-overflow: hidden;
+              overflow: hidden;
+            }
+
+            .author {
+              display: inline-block;
+              color: #ccc;
+              font-size: 0.8rem;
+            }
+
+            .views {
+              color: #ccc;
+              font-size: 0.8rem;
+            }
+          }
+
+          .card-list-icon {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            font-size: 24px;
+            vertical-align: top;
+            border: 1px solid black;
+            border-radius: 50%;
+            text-align: end;
+
+            button {
+              background: transparent;
+              border: 0;
+              height: 25px;
+              width: 25px;
+              cursor: pointer;
+              border-radius: 50%;
+              vertical-align: top;
+              color: white;
+              transition: 0.3s;
+
+              &:active {
+                background: #222;
+              }
+            }
+          }
+        }
+
+        &:active {
+          background: #555;
+        }
+      }
+    }
+
+    #header {
+      height: 70px;
+      width: 100%;
+      background: black;
+      display: inline-block;
+      font-size: 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 3;
+
+      .start {
+        height: 100%;
+        width: 20%;
+        /* border: 1px solid white; */
+        display: inline-block;
+        padding-top: 10px;
+
+        .btn {
+          background: transparent;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-left: 15px;
+          margin-top: 5px;
+
+          i {
+            display: inline-block;
+            font-size: 20px;
+            color: white;
+            line-height: 1;
+            vertical-align: top;
+          }
+
+          &:hover {
+            background: #333;
+            border-radius: 50%;
+          }
+        }
+
+        .yt-img {
+          display: inline-block;
+          width: 150px;
+          vertical-align: top;
+          margin-top: -10px;
+
+          img {
+            width: 100%;
+            height: 60px;
+          }
+        }
+      }
+
+      .center {
+        height: 100%;
+        width: 40%;
+        /* border: 1px solid white; */
+        display: inline-block;
+        position: absolute;
+        left: 55%;
+        transform: translateX(-50%);
+        padding-top: 10px;
+        color: #ccc;
+
+        input {
+          width: 70%;
+          height: 70%;
+          padding-left: 10px;
+          font-size: 13px;
+          color: #ccc;
+
+          background: transparent;
+          border: 1px solid #333;
+          border-radius: 20px 0 0 20px;
+        }
+
+        .search-btn {
+          width: 60px;
+          height: 70%;
+          /* border: 1px solid #ccc; */
+          border-radius: 0 20px 20px 0;
+          display: inline-block;
+          font-size: 20px;
+          text-align: center;
+          vertical-align: top;
+          padding-top: 10px;
+          font-size: 16px;
+          background: #222;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .search-mic {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          /* border: 1px solid white; */
+          border-radius: 50%;
+          font-size: 15px;
+          text-align: center;
+          margin-left: 10px;
+          vertical-align: top;
+          padding-top: 10px;
+          background: #222;
+
+          &:hover {
+            background: #444;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .end {
+        height: 100%;
+        width: 160px;
+        /* border: 1px solid white; */
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        padding-top: 10px;
+        padding-left: 10px;
+        color: #ccc;
+
+        .upload {
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+          display: inline-block;
+          vertical-align: top;
+          text-align: center;
+          padding-top: 5px;
+          margin-left: -10px;
+
+          &:hover {
+            background: #333;
+            border-radius: 50%;
+          }
+        }
+
+        .notify {
+          font-size: 20px;
+          display: inline-block;
+          vertical-align: top;
+          margin-left: 5%;
+          text-align: center;
+          width: 30px;
+          height: 30px;
+          padding-top: 5px;
+
+          &:hover {
+            background: #333;
+            border-radius: 50%;
+          }
+        }
+
+        .profile {
+          width: 30px;
+          display: inline-block;
+          vertical-align: top;
+          margin-left: 15%;
+
+          button,
+          img {
+            border-radius: 50%;
+            width: 100%;
+          }
+
+          img:active {
+            border: 2px solid lightblue;
+            border-radius: 50%;
+            transform: scale(1.1);
+          }
+
+          #profile-checked {
+            display: none;
+
+            &:checked+.profile-menu {
+              display: block;
+            }
+          }
+
+          .profile-menu {
+            display: none;
+            height: 750px;
+            width: 300px;
+            /* border: 2px solid blue; */
+            background: #222;
+            position: absolute;
+            left: -170px;
+            top: 40px;
+            border-radius: 10px;
+
+            .profile-top-menu {
+              border-bottom: 1px solid #333;
+              height: 100px;
+              padding: 20px;
+
+              .profile-menu-img {
+                width: 30px;
+                display: inline-block;
+                vertical-align: top;
+
+                img {
+                  border-radius: 50%;
+                  width: 100%;
+                }
+              }
+
+              .profile-menu-text {
+                display: inline-block;
+                height: 100px;
+                font-size: 16px;
+                margin-left: 20px;
+
+                span {
+                  display: block;
+                  margin-bottom: 5px;
+                }
+
+                a {
+                  text-decoration: none;
+                  color: #3ea6ff;
+                }
+              }
+            }
+
+            ul {
+              padding: 10px 0;
+              font-size: 14px;
+              border-bottom: 1px solid #333;
+              color: white;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              li {
+                padding: 10px 20px;
+
+                &:hover {
+                  background: #333;
+                }
+              }
+
+              &:nth-last-child(1) {
+                border-bottom: 0;
+              }
+
+              a {
+                text-decoration: none;
+                color: white;
+              }
+
+              i {
+                margin-right: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #topbar {
+      width: 87%;
+      padding: 10px;
+      /* border: 1px solid white; */
+      position: fixed;
+      left: 15%;
+      top: 70px;
+      background: black;
+
+      label {
+        display: inline-block;
+        /* border: 1px solid #333; */
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: #333;
+        margin-right: 5px;
+        font-size: 15px;
+        color: white;
+
+        &:hover {
+          background: #444;
+          cursor: pointer;
+        }
+      }
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      input[type="radio"]:checked+label {
+        background: white;
+        color: #222;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header">
+    <div class="start">
+      <button class="btn"><i class="fa-solid fa-bars"></i></button>
+      <div class="yt-img">
+        <a href="#"><img src="./youtube.jpg" alt="" /></a>
+      </div>
+    </div>
+    <div class="center">
+      <input type="text" placeholder="搜尋" />
+      <div class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="search-mic"><i class="fa-solid fa-microphone"></i></div>
+    </div>
+    <div class="end">
+      <div class="upload"><i class="fa-solid fa-square-plus"></i></div>
+      <div class="notify"><i class="fa-regular fa-bell"></i></div>
+      <div class="profile">
+        <img class="profile-img" src="./channels4_profile.jpg" alt="Profile Image" />
+        <div class="profile-menu">
+          <div class="profile-top-menu">
+            <div class="profile-menu-img">
+              <img src="./channels4_profile.jpg" alt="" />
+            </div>
+            <div class="profile-menu-text">
+              <span>Guest</span>
+              <span>@Guest</span>
+              <span><a href="#">查看頻道</a></span>
+            </div>
+          </div>
+          <ul>
+            <li>
+              <a href="#"><i class="fa-brands fa-google"></i>Google帳戶</a>
+            </li>
+            <li>
+              <i class="fa-regular fa-id-badge"></i>切換帳戶<span>></span>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-arrow-right-to-bracket"></i>登出</a>
+            </li>
+          </ul>
+
+          <ul>
+            <li>
+              <a href="#"><i class="fa-solid fa-circle-play"></i>YouTube 工作室</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-sack-dollar"></i>購買內容與會員資格</a>
+            </li>
+          </ul>
+
+          <ul>
+            <li>
+              <a href="#"><i class="fa-regular fa-user"></i>你在YouTube 中的資料</a>
+            </li>
+            <li><i class="fa-regular fa-moon"></i>外觀：深色主題</li>
+            <li><i class="fa-brands fa-angular"></i>語言：中文（台灣）</li>
+            <li><i class="fa-solid fa-shield"></i>嚴格篩選模式：停用</li>
+            <li><i class="fa-solid fa-globe"></i>位置：台灣</li>
+            <li><i class="fa-regular fa-keyboard"></i>鍵盤快速鍵</li>
+          </ul>
+
+          <ul>
+            <li>
+              <a href="#"><i class="fa-solid fa-gear"></i>設定</a>
+            </li>
+          </ul>
+
+          <ul>
+            <li><i class="fa-solid fa-circle-question"></i>說明</li>
+            <li><i class="fa-regular fa-font-awesome"></i>提供意見</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="topbar">
+
+    <label for="topbar-all">
+      全部
+      <input name="topbar-checkbox" type="radio" checked />
+    </label>
+
+    <label for="topbar-game">
+      遊戲
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-news">
+      新聞
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-music">
+      音樂
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-live">
+      直播中
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+
+    <label for="topbar-baseball">
+      棒球
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-compilation">
+      合輯
+
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-anime">
+      動畫
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-avg">
+      動作冒險遊戲
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-new">
+      最新上傳
+      <input name="topbar-checkbox" type="radio" />
+
+    </label>
+
+    <label for="topbar-watched">
+      已觀看
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+    <label for="topbar-refreshing">
+      讓你耳目一新的影片
+      <input name="topbar-checkbox" type="radio" />
+    </label>
+
+  </div>
+  <div id="sidebar">
+    <ul>
+      <li>
+        <a href="#"><i class="fa-solid fa-house"></i>首頁</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-circle-play"></i>Shorts</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-regular fa-square"></i>訂閱內容</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-music"></i>Youtube Music</a>
+      </li>
+    </ul>
+    <ul>
+      <li><a href="#">個人中心&nbsp;&nbsp;&nbsp;></a></li>
+      <li>
+        <a href="#"><i class="fa-solid fa-id-badge"></i>你的頻道</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-clock-rotate-left"></i>觀看紀錄</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-list"></i>播放清單</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-play"></i>你的影片</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-thumbs-up"></i>喜歡的影片</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-download"></i>已下載的內容</a>
+      </li>
+    </ul>
+    <h3>探索</h3>
+    <ul>
+      <li>
+        <a href="#"><i class="fa-solid fa-fire"></i>發燒影片</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-music"></i>音樂</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-clapperboard"></i>電影</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-wifi"></i>直播</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-gamepad"></i>遊戲</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-newspaper"></i>新聞</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-medal"></i>體育</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-lightbulb"></i>課程</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-podcast"></i>Podcast</a>
+      </li>
+    </ul>
+    <h3>更多YouTube功能</h3>
+    <ul>
+      <li>
+        <a href="#"><i class="fa-solid fa-circle-play"></i>YouTube 工作室</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-regular fa-circle-play"></i>YouTube Music</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-brands fa-youtube"></i>YouTube Kids</a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="#"><i class="fa-solid fa-gear"></i>設定</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-flag"></i>檢舉</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-solid fa-circle-question"></i>說明</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa-regular fa-font-awesome"></i>提供意見</a>
+      </li>
+    </ul>
+  </div>
+  <div id="content">
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/VX0nULHEtpg/hq720.jpg?v=66f99d7a&sqp=CKDo87cG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCUbSnSy6hc7UoFMDR2h45eBHRcAw"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_lJFHetgUm79M-AXcxl8DedTqLFP0csU6LOquXY9TnaSRk=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>山陀兒颱風監視</h3>
+          </span>
+          <span class="author">
+            <h3>台灣地震監視</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:1萬•1天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/H9fuV6FZOmk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAJSIJ2jcxmwUnhQ3yZ1N_G2iEFvg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/4vZVmc7J_F9One6GN77E5sWIJaOVrxrhfWDpWm7PhZ-8TOxlXr4rD4aOiGj_9buyQU3n-kl0qw=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>覺得韓國烤肉最棒的韓國人，體驗台灣中秋節烤肉的話...?</h3>
+          </span>
+          <span class="author">
+            <h3>韓國歐巴太囧</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:20萬次•5天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/QkeGDKo3JFI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRG_KTJjKnPWG5Ja673zRi4w3euA"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_ksEz6XyEG1PA7iyIUA8onxrSLTLcNmM48lCfX9FZldqpw=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              特好吃系列｜隱居山中的全台第一海鮮餐廳！一餐低消四萬二竟還有鯊魚！連澎湖人都讚不絕口的高檔海鮮？
+            </h3>
+          </span>
+          <span class="author">
+            <h3>Dinter</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:2.2萬次•2小時前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/Okcqw42_6qY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA6mzR4UknNb9QxVa-QZUit5MBWYQ"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_l-mO25Z-PJMwsjGY6VyBjBwiFgE9dMW6sqHhPccqF9XTs=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>PUBG : RTX 4090 24GB ( 4K Ultra Graphics )</h3>
+          </span>
+          <span class="author">
+            <h3>GTX 1050 Ti</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:24萬次•2個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/bJ0hZqO0gb4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8U88sG66lu0dDKoF-iUxl0tgnag"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/NSwTvpbUJsWmn_JxIzy3B4-e6ZcoTi_yBvnrIcvGifCayxAZFk8OQOyUguvdriPUvPhPpSMqCg=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>配管到差點被活埋！921大地震後的房子有多難蓋！【水電爸爸】</h3>
+          </span>
+          <span class="author">
+            <h3>水電爸爸</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:18萬次•12天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/KH2fIJIab64/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBcyaSK934l7Svhj0Cdf0U6iikZIg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_kOuhX7wMTHjAro3df04UYPrPc5WAl-totAak2OQ8pRtw=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>APEX 格付け</h3>
+          </span>
+          <span class="author">
+            <h3>杏チャンネル</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:756萬次•3 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/D0xSUBG2rY8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYOHM5c8BysmamYjn80ni22DoMFg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/2MccjXWkPX6tR_Lkq3MN9IeizfMCjg2KucwDChf9pDCnTjY_5ZSRePBs6LI_l50poGNB1Uit-w=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>【俄機長讓16歲兒子開飛機？玩壞操縱桿自墜毀最終對話曝..】</h3>
+          </span>
+          <span class="author">
+            <h3>台灣達人秀</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:138萬次•2 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/kigRTJ53XGU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA-TGL40X1UAbWxh1sUF8kXIIbCaw"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/fjVR6rA2cxVSwjC2fKSBA0DvcUu_7i45mdoN7sa6v5DOhlptwh4ersDTl1UwBbqmtULYutix78Q=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>PUBG : RTX 4090 - i9 14900K ( 4K Max Settings )</h3>
+          </span>
+          <span class="author">
+            <h3>Dream Universe</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:56萬次•3個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/T-tlKGjU2RE/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARgTIFUofzAP&rs=AOn4CLDdPgRI0wZEQswUR7zZ4PssnIbJUw"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_kUijcpFIZaMoYE3N2ed6PFZ77yDPX0Eb5ITNTc0XrQLhc=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              水族館大魚突然死亡 Sudden death of a fish in Okinawa
+              aquarium沖縄美ら海水族館に突然死亡した魚
+            </h3>
+          </span>
+          <span class="author">
+            <h3>Kenneth's Perspective (Life in Hong Kong)</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數: 2062萬•11 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/ehB9m_7N8ds/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDif1tBsaIOPkO7A0sx8Mux-S8U6Q"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/McoEEWDTf6tdYsVzdYIAuyT4RaEAoDIXUNKbiqPb3urb9palXTpE5S7t3XTYS_FOyBhW_1ZcQTU=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              全部清台！這種夾iPhone 的娃娃機…
+              到底是不是騙人的？！【好棒Bump】
+            </h3>
+          </span>
+          <span class="author">
+            <h3>好棒Bump</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:257萬次•1 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/UfwCCG9e4Z8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCpZl2ZKoZ0F7bAuACpW3GUjQR7cA"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/1n4eKNAO-UlNDB9h2y8B9Hz77ZTLUwr0O-kbZFMEv6baWhl6ycgCHppWM8O8-ZeeRUgL0LkiOGA=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              Tokyo Night Ride by Ninja H2 Episode 64/東京/Japan/Kawasaki
+              Ninja H2【4K】
+            </h3>
+          </span>
+          <span class="author">
+            <h3>The Ninja H2 Japan</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:71萬次•2 個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/hLm3U84uybE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCZCh3P2TeKJ9HW1PDGHRM9KsbqPA"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/lCfR2jiBEWFiS6rOXFhBgBFTewufhxvqwVOvOANNZSzczk9r7qG2O98SmsUKMhgrY-2tEwlhLsA=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              衝撃映像 - 少林拳の達人・シンのありえない壁当てシーン |
+              少林サッカー | Netflix Japan
+            </h3>
+          </span>
+          <span class="author">
+            <h3>Netflix Japan</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:1443萬次•2 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/A2NO7BWFt8M/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB25xRvcEPlfJgH8yVySKtg0-6uKg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/rnN-x98rUchELyY3sCEW3f_o6CSUi_PLSZLo8DeGNKheaEoq1NyWk4PAhmXqMN874VgPQKXc=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>This Motorcycle Race Gives You Anxiety | Macau POV</h3>
+          </span>
+          <span class="author">
+            <h3>Murtanio</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:343萬次•6 個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/APZJm5pbl0g/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDZGKE_3Gehl-AINYZYUOQ2-_MYyg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/_WqBV0c5uBJar70eAuK0LnWx0MaQTkaMquD6EiVnVx1VUb3Pdk1NHRfirOl3OQoRjMJ0XSncoA=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>塔吊是如何給自己身高的，塔吊的工作原理</h3>
+          </span>
+          <span class="author">
+            <h3>鹰眼科普</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:67萬次•1 個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/zc6JjX95Tn0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAmM_LMnCk6jeumNiPTgTryCU6fEA"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_n1NhtKBEhRhH5W0vnDXQuPd61F8rntz1CnQj79FycKfQ=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>Slow Motion Test Comparison - From 24 FPS to 7680 FPS</h3>
+          </span>
+          <span class="author">
+            <h3>SlowMoGreg</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:63萬次•3 年前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/VX0nULHEtpg/hq720.jpg?v=66f99d7a&sqp=CKDo87cG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCUbSnSy6hc7UoFMDR2h45eBHRcAw"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_lJFHetgUm79M-AXcxl8DedTqLFP0csU6LOquXY9TnaSRk=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>山陀兒颱風監視</h3>
+          </span>
+          <span class="author">
+            <h3>台灣地震監視</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:1萬•1天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/H9fuV6FZOmk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAJSIJ2jcxmwUnhQ3yZ1N_G2iEFvg"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/4vZVmc7J_F9One6GN77E5sWIJaOVrxrhfWDpWm7PhZ-8TOxlXr4rD4aOiGj_9buyQU3n-kl0qw=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>覺得韓國烤肉最棒的韓國人，體驗台灣中秋節烤肉的話...?</h3>
+          </span>
+          <span class="author">
+            <h3>韓國歐巴太囧</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:20萬次•5天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/QkeGDKo3JFI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRG_KTJjKnPWG5Ja673zRi4w3euA"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_ksEz6XyEG1PA7iyIUA8onxrSLTLcNmM48lCfX9FZldqpw=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>
+              特好吃系列｜隱居山中的全台第一海鮮餐廳！一餐低消四萬二竟還有鯊魚！連澎湖人都讚不絕口的高檔海鮮？
+            </h3>
+          </span>
+          <span class="author">
+            <h3>Dinter</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:2.2萬次•2小時前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/Okcqw42_6qY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA6mzR4UknNb9QxVa-QZUit5MBWYQ"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/ytc/AIdro_l-mO25Z-PJMwsjGY6VyBjBwiFgE9dMW6sqHhPccqF9XTs=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>PUBG : RTX 4090 24GB ( 4K Ultra Graphics )</h3>
+          </span>
+          <span class="author">
+            <h3>GTX 1050 Ti</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:24萬次•2個月前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img
+          src="https://i.ytimg.com/vi/bJ0hZqO0gb4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8U88sG66lu0dDKoF-iUxl0tgnag"
+          alt="" />
+      </div>
+      <div class="card-info">
+        <div class="author-img">
+          <img
+            src="https://yt3.ggpht.com/NSwTvpbUJsWmn_JxIzy3B4-e6ZcoTi_yBvnrIcvGifCayxAZFk8OQOyUguvdriPUvPhPpSMqCg=s68-c-k-c0x00ffffff-no-rj"
+            alt="" />
+        </div>
+        <div class="card-text">
+          <span class="title">
+            <h3>配管到差點被活埋！921大地震後的房子有多難蓋！【水電爸爸】</h3>
+          </span>
+          <span class="author">
+            <h3>水電爸爸</h3>
+          </span>
+          <span class="views">
+            <h3>觀看次數:18萬次•12天前</h3>
+          </span>
+        </div>
+        <div class="card-list-icon">
+          <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ytUrl = [
+      "https://www.youtube.com/watch?v=VX0nULHEtpg",
+      "https://www.youtube.com/watch?v=H9fuV6FZOmk",
+      "https://www.youtube.com/watch?v=QkeGDKo3JFI",
+      "https://www.youtube.com/watch?v=Okcqw42_6qY",
+      "https://www.youtube.com/watch?v=bJ0hZqO0gb4",
+      "https://www.youtube.com/watch?v=KH2fIJIab64",
+      "https://www.youtube.com/watch?v=D0xSUBG2rY8",
+      "https://www.youtube.com/watch?v=kigRTJ53XGU",
+      "https://www.youtube.com/watch?v=T-tlKGjU2RE",
+      "https://www.youtube.com/watch?v=ehB9m_7N8ds",
+      "https://www.youtube.com/watch?v=UfwCCG9e4Z8",
+      "https://www.youtube.com/watch?v=hLm3U84uybE",
+      "https://www.youtube.com/watch?v=A2NO7BWFt8M",
+      "https://www.youtube.com/watch?v=APZJm5pbl0g",
+      "https://www.youtube.com/watch?v=zc6JjX95Tn0",
+      "https://www.youtube.com/watch?v=VX0nULHEtpg",
+      "https://www.youtube.com/watch?v=H9fuV6FZOmk",
+      "https://www.youtube.com/watch?v=QkeGDKo3JFI",
+      "https://www.youtube.com/watch?v=Okcqw42_6qY",
+      "https://www.youtube.com/watch?v=bJ0hZqO0gb4",
+      "https://www.youtube.com/watch?v=KH2fIJIab64",
+      "https://www.youtube.com/watch?v=D0xSUBG2rY8",
+      "https://www.youtube.com/watch?v=kigRTJ53XGU",
+      "https://www.youtube.com/watch?v=T-tlKGjU2RE",
+      "https://www.youtube.com/watch?v=ehB9m_7N8ds",
+    ];
+
+    const titleName = [
+      "山陀兒颱風監視",
+      "覺得韓國烤肉最棒的韓國人，體驗台灣中秋節烤肉的話...?",
+      "特好吃系列｜隱居山中的全台第一海鮮餐廳！一餐低消四萬二竟還有鯊魚！連澎湖人都讚不絕口的高檔海鮮？",
+      "PUBG : RTX 4090 24GB ( 4K Ultra Graphics )",
+      "配管到差點被活埋！921大地震後的房子有多難蓋！【水電爸爸】",
+      "APEX 格付け",
+      "【俄機長讓16歲兒子開飛機？玩壞操縱桿自墜毀最終對話曝..】",
+      "PUBG : RTX 4090 - i9 14900K ( 4K Max Settings )",
+      "水族館大魚突然死亡 Sudden death of a fish in Okinawa aquarium沖縄美ら海水族館に突然死亡した魚",
+      "全部清台！這種夾iPhone 的娃娃機…到底是不是騙人的？！【好棒Bump】",
+      "Tokyo Night Ride by Ninja H2 Episode 64/東京/Japan/Kawasaki Ninja H2【4K】",
+      "衝撃映像 - 少林拳の達人・シンのありえない壁当てシーン | 少林サッカー | Netflix Japan",
+      "This Motorcycle Race Gives You Anxiety | Macau POV",
+      "塔吊是如何給自己身高的，塔吊的工作原理",
+      "Slow Motion Test Comparison - From 24 FPS to 7680 FPS",
+      "山陀兒颱風監視",
+      "覺得韓國烤肉最棒的韓國人，體驗台灣中秋節烤肉的話...?",
+      "特好吃系列｜隱居山中的全台第一海鮮餐廳！一餐低消四萬二竟還有鯊魚！連澎湖人都讚不絕口的高檔海鮮？",
+      "PUBG : RTX 4090 24GB ( 4K Ultra Graphics )",
+      "配管到差點被活埋！921大地震後的房子有多難蓋！【水電爸爸】",
+    ];
+
+    const authorName = [
+      "台灣地震監視",
+      "韓國歐巴太囧",
+      "Dinter",
+      "GTX 1050 Ti",
+      "水電爸爸",
+      "杏チャンネル",
+      "台灣達人秀",
+      "Dream Universe",
+      `Kenneth's Perspective (Life in Hong Kong)`,
+      "好棒Bump",
+      "The Ninja H2 Japan",
+      "Netflix Japan",
+      "Murtanio",
+      "鹰眼科普",
+      "SlowMoGreg",
+      "台灣地震監視",
+      "韓國歐巴太囧",
+      "Dinter",
+      "GTX 1050 Ti",
+      "水電爸爸",
+    ];
+
+    let card = document.querySelectorAll(".card");
+    for (let i = 0; i < card.length; i++) {
+      card[i].addEventListener("click", function () {
+        window.location.href = ytUrl[i];
+      });
+    }
+
+    let title = document.querySelectorAll(".title");
+    let author = document.querySelectorAll(".author");
+
+    title.forEach((element, index) => {
+      element.setAttribute("title", titleName[index]);
+    });
+
+    author.forEach((element, index) => {
+      element.setAttribute("title", authorName[index]);
+    });
+
+    const profileMenu = document.querySelector(".profile-menu");
+    const body = document.querySelector("body");
+    const profileChecked = document.querySelector(".profile-img");
+    let isClicked = false;
+
+    profileMenu.addEventListener('mouseleave', () => (isClicked = true));
+    profileMenu.addEventListener('mousemove', () => (isClicked = false));
+
+    profileChecked.addEventListener("click", (event) => {
+      event.stopPropagation();
+      isClicked = !isClicked;
+
+      if (isClicked) {
+        profileMenu.style.display = "block";
+        console.log('open')
+      } else {
+        profileMenu.style.display = "none";
+        console.log('notOpen');
+      }
+    });
+
+    body.addEventListener("click", (event) => {
+      if (isClicked) {
+        profileMenu.style.display = 'none';
+        isClicked = false;
+      }
+    });
+  </script>
+</body>
+
+</html>
