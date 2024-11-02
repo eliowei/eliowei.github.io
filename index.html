@@ -21,6 +21,7 @@
       height: 100%;
       background: black;
       scrollbar-color: #ccc transparent;
+      overflow-x: hidden;
     }
 
     ul,
@@ -89,22 +90,21 @@
     /* 內容 */
     #content {
       width: 87%;
-      margin-left: 15%;
-      margin-top: 6.5%;
+      margin-left: 14%;
+      margin-top: 4%;
       margin-bottom: 1%;
       background: black;
       font-size: 0;
-      padding-top: 24px;
+      padding-top: 25px;
 
       .card {
         width: 18%;
         height: 100%;
         /* border: 1px solid white; */
         display: inline-block;
-        margin: 0 10px;
-        padding: 0 5px;
+        margin: 30px 10px;
+        padding: 5px 5px;
         vertical-align: top;
-        margin-top: 20px;
         font-size: 0;
         white-space: nowrap;
         cursor: pointer;
@@ -148,6 +148,7 @@
               font-size: 1rem;
               display: -webkit-box;
               -webkit-box-orient: vertical;
+              line-clamp: 2;
               -webkit-line-clamp: 2;
               text-overflow: hidden;
               overflow: hidden;
@@ -201,7 +202,7 @@
 
     #header {
       height: 70px;
-      width: 100%;
+      width: 99%;
       background: black;
       display: inline-block;
       font-size: 0;
@@ -213,17 +214,18 @@
       .start {
         height: 100%;
         width: 20%;
-        /* border: 1px solid white; */
+        border: 1px solid white;
         display: inline-block;
         padding-top: 10px;
+        vertical-align: top;
 
         .btn {
           background: transparent;
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           margin-left: 15px;
-          margin-top: 5px;
+          border:0;
 
           i {
             display: inline-block;
@@ -235,6 +237,11 @@
 
           &:hover {
             background: #333;
+            border-radius: 50%;
+          }
+
+          &:active {
+            background: #444;
             border-radius: 50%;
           }
         }
@@ -254,18 +261,16 @@
 
       .center {
         height: 100%;
-        width: 40%;
-        /* border: 1px solid white; */
+        width: 60%;
+        border: 1px solid white;
         display: inline-block;
-        position: absolute;
-        left: 55%;
-        transform: translateX(-50%);
         padding-top: 10px;
         color: #ccc;
+        text-align: center;
 
         input {
-          width: 70%;
-          height: 70%;
+          width: 536px;
+          height: 40px;
           padding-left: 10px;
           font-size: 13px;
           color: #ccc;
@@ -273,11 +278,12 @@
           background: transparent;
           border: 1px solid #333;
           border-radius: 20px 0 0 20px;
+          position: relative;
         }
 
         .search-btn {
           width: 60px;
-          height: 70%;
+          height: 40px;
           /* border: 1px solid #ccc; */
           border-radius: 0 20px 20px 0;
           display: inline-block;
@@ -315,52 +321,57 @@
 
       .end {
         height: 100%;
-        width: 160px;
-        /* border: 1px solid white; */
+        width: 20%;
+        border: 1px solid white;
         display: inline-block;
-        position: absolute;
-        right: 0;
         padding-top: 10px;
         padding-left: 10px;
+        vertical-align: top;
+        text-align: end;
         color: #ccc;
 
         .upload {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
           font-size: 20px;
           display: inline-block;
-          vertical-align: top;
           text-align: center;
+          vertical-align: top;
           padding-top: 5px;
           margin-left: -10px;
+          line-height: 30px;
 
           &:hover {
             background: #333;
             border-radius: 50%;
+            cursor: pointer;
           }
         }
 
         .notify {
           font-size: 20px;
           display: inline-block;
-          vertical-align: top;
-          margin-left: 5%;
+          margin-left: 2%;
           text-align: center;
-          width: 30px;
-          height: 30px;
+          vertical-align: top;
+          width: 40px;
+          height: 40px;
           padding-top: 5px;
+          line-height: 30px;
 
           &:hover {
             background: #333;
             border-radius: 50%;
+            cursor: pointer;
           }
         }
 
         .profile {
-          width: 30px;
+          width: 32px;
           display: inline-block;
-          vertical-align: top;
-          margin-left: 15%;
+          margin-left: 6%;
+          margin-right:9%;
+          margin-top:5px;
 
           button,
           img {
@@ -372,6 +383,10 @@
             border: 2px solid lightblue;
             border-radius: 50%;
             transform: scale(1.1);
+          }
+
+          img:hover{
+            cursor: pointer;
           }
 
           #profile-checked {
@@ -389,9 +404,10 @@
             /* border: 2px solid blue; */
             background: #222;
             position: absolute;
-            left: -170px;
-            top: 40px;
+            right:20px;
+            top: 49px;
             border-radius: 10px;
+            text-align: start;
 
             .profile-top-menu {
               border-bottom: 1px solid #333;
@@ -464,11 +480,11 @@
     }
 
     #topbar {
-      width: 87%;
+      width: 85%;
       padding: 10px;
       /* border: 1px solid white; */
       position: fixed;
-      left: 15%;
+      left: 14%;
       top: 70px;
       background: black;
 
@@ -580,68 +596,42 @@
   </div>
   <div id="topbar">
 
-    <label for="topbar-all">
-      全部
-      <input name="topbar-checkbox" type="radio" checked />
-    </label>
 
-    <label for="topbar-game">
-      遊戲
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-all" type="radio" checked />
+    <label for="topbar-all">全部</label>
 
-    <label for="topbar-news">
-      新聞
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-game" type="radio" />
+    <label for="topbar-game">遊戲</label>
 
-    <label for="topbar-music">
-      音樂
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-news" type="radio" />
+    <label for="topbar-news">新聞</label>
 
-    <label for="topbar-live">
-      直播中
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-music" type="radio" />
+    <label for="topbar-music">音樂</label>
 
+    <input name="topbar-checkbox" id="topbar-live" type="radio" />
+    <label for="topbar-live">直播中</label>
 
-    <label for="topbar-baseball">
-      棒球
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-baseball" type="radio" />
+    <label for="topbar-baseball"> 棒球</label>
 
-    <label for="topbar-compilation">
-      合輯
+    <input name="topbar-checkbox" id="topbar-compilation" type="radio" />
+    <label for="topbar-compilation">合輯</label>
 
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-anime" type="radio" />
+    <label for="topbar-anime">動畫</label>
 
-    <label for="topbar-anime">
-      動畫
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-avg" type="radio" />
+    <label for="topbar-avg">動作冒險遊戲</label>
 
-    <label for="topbar-avg">
-      動作冒險遊戲
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-new" type="radio" />
+    <label for="topbar-new">最新上傳</label>
 
-    <label for="topbar-new">
-      最新上傳
-      <input name="topbar-checkbox" type="radio" />
+    <input name="topbar-checkbox" id="topbar-watched" type="radio" />
+    <label for="topbar-watched">已觀看</label>
 
-    </label>
-
-    <label for="topbar-watched">
-      已觀看
-      <input name="topbar-checkbox" type="radio" />
-    </label>
-
-    <label for="topbar-refreshing">
-      讓你耳目一新的影片
-      <input name="topbar-checkbox" type="radio" />
-    </label>
+    <input name="topbar-checkbox" id="topbar-refreshing" type="radio" />
+    <label for="topbar-refreshing">讓你耳目一新的影片</label>
 
   </div>
   <div id="sidebar">
