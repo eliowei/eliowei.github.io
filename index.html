@@ -599,7 +599,7 @@
 
     <label for="topbar-all">
       全部
-      <input name="topbar-checkbox" type="radio" checked />
+      <input name="topbar-checkbox" id="topbar-all" type="radio" checked />
     </label>
 
     <label for="topbar-game">
@@ -1428,6 +1428,7 @@
       element.setAttribute("title", authorName[index]);
     });
 
+    const topBarInput = document.querySelectorAll('#topbar>label>input')
     const profileMenu = document.querySelector(".profile-menu");
     const body = document.querySelector("body");
     const profileChecked = document.querySelector(".profile-img");
@@ -1436,6 +1437,12 @@
     profileMenu.addEventListener('mouseleave', () => (isClicked = true));
     profileMenu.addEventListener('mousemove', () => (isClicked = false));
 
+    topBarInput.forEach((element,index) =>{
+      console.log(element)
+      element.addEventListener('click', () =>{
+      })
+    })
+  
     profileChecked.addEventListener("click", (event) => {
       event.stopPropagation();
       isClicked = !isClicked;
