@@ -9,7 +9,8 @@
           class="w-32 h-32 mx-auto rounded-full mb-4"
         />
         <p>
-          你好，我是 XXX ，一名熱愛前端開發，剛受完泰山職訓的程式小白，擅長 Vue.js 和 Tailwind CSS。
+          你好，我是 李柏偉 ，一名熱愛前端開發，剛受完泰山職訓的程式小白，擅長 Vue.js 和 Bootstrap
+          CSS。
         </p>
         <button
           class="hover:cursor-pointer hover:bg-gradient-to-tr hover:from-[#ff80b5c] hover:to-[#a998e6] p-2 rounded-lg border border-gray-200 mt-5 duration-300 ease-in-out"
@@ -81,7 +82,7 @@
     <section id="resume" class="p-10 flex justify-center">
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
         <h2 class="text-3xl font-semibold mb-4">履歷</h2>
-        <p>技能：Vue.js, JavaScript, Tailwind CSS, WebSocket</p>
+        <p>技能：Vue.js, JavaScript, Bootstrap, Node.js</p>
         <p>教育背景：健行科技大學 - 資訊管理</p>
       </div>
     </section>
