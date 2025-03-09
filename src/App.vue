@@ -1,21 +1,16 @@
 <template>
   <div class="bg-white">
     <header class="absolute inset-x-0 top-0 z-50">
-      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav class="flex items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+          <a href="/" class="-m-1.5 p-1.5">
+            <span>Elio Wei</span>
           </a>
         </div>
         <div class="flex lg:hidden">
           <button
             type="button"
-            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:cursor-pointer hover:bg-gray-400/10 transition-all duration-300"
             @click="showMenu = true"
           >
             <span class="sr-only">Open main menu</span>
@@ -37,9 +32,16 @@
           </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
-          <RouterLink to="/" class="text-sm/6 font-semibold text-gray-900">首頁</RouterLink>
-          <RouterLink to="/about" class="text-sm/6 font-semibold text-gray-900">關於我</RouterLink>
-          <RouterLink to="/list" class="text-sm/6 font-semibold text-gray-900">作品集</RouterLink>
+          <RouterLink
+            to="/"
+            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            >關於我</RouterLink
+          >
+          <RouterLink
+            to="/projects"
+            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            >作品集</RouterLink
+          >
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
@@ -52,16 +54,11 @@
         >
           <div class="flex items-center justify-between">
             <a href="#" class="-m-1.5 p-1.5">
-              <span class="sr-only">Your Company</span>
-              <img
-                class="h-8 w-auto"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <span>Elio Wei</span>
             </a>
             <button
               type="button"
-              class="-m-2.5 rounded-md p-2.5 text-gray-700"
+              class="-m-2.5 rounded-md p-2.5 text-gray-700 hover:cursor-pointer hover:bg-gray-400/10 transition-all duration-300 hover:rounded-4xl"
               @click="showMenu = false"
             >
               <svg
@@ -83,15 +80,10 @@
                 <RouterLink
                   to="/"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >首頁</RouterLink
-                >
-                <RouterLink
-                  to="/about"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >關於我</RouterLink
                 >
                 <RouterLink
-                  to="/list"
+                  to="/projects"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >作品集</RouterLink
                 >
@@ -162,6 +154,9 @@
     </div>
   </div>
   <RouterView />
+  <footer class="h-[100px] flex justify-center items-center relative">
+    <span class="text-xs">©2025 by Elio Wei rights reserved.</span>
+  </footer>
 </template>
 
 <script setup>
