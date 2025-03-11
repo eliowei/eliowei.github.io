@@ -17,13 +17,12 @@
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
         <h2 class="text-3xl font-semibold mb-4">關於我</h2>
         <img
-          src="https://picsum.photos/300/200/?random=10"
+          src="../assets/profile.jpg"
           alt="個人照片"
           class="w-32 h-32 mx-auto rounded-full mb-4"
         />
         <p>
-          你好，我是李柏偉，對前端開發充滿熱情。過去曾在軍中服役六年，這段經歷讓我培養了團隊合作與問題解決能力。近期完成泰山職訓局的前端培訓，學習了
-          Vue.js
+          你好，我是李柏偉。近期完成泰山職訓局的前端培訓，對前端開發充滿熱情，學習了 Vue.js
           與相關前端技術，並透過專題開發累積實作經驗。目前正持續精進技術，期待未來能在業界發揮所長。
         </p>
       </div>
@@ -70,8 +69,8 @@
     <section id="contact" class="p-10 bg-white flex justify-center">
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
         <h2 class="text-3xl font-semibold mb-4">聯絡方式</h2>
+        <p>Email: zxc800303@yahoo.com.tw</p>
         <p><a href="https://github.com/eliowei" class="text-blue-500">GitHub</a></p>
-        <p>Email: zxc160604@gmail.com</p>
       </div>
     </section>
 
@@ -490,7 +489,7 @@ onMounted(() => {
       start: 'top 50%',
       end: 'bottom 0%',
       scrub: true,
-      // markers: true,
+      markers: true,
     },
     backgroundPosition: '50% -200%',
     ease: 'none',
@@ -502,7 +501,7 @@ onMounted(() => {
       start: 'top 50%',
       end: 'bottom 0%',
       scrub: true,
-      // markers: true,
+      markers: true,
     },
     scale: 1.3,
     ease: 'none',
