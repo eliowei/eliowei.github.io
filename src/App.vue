@@ -31,19 +31,26 @@
             </svg>
           </button>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
-          <RouterLink
-            to="/"
+        <div class="hidden lg:flex lg:gap-x-12 mr-10">
+          <a
+            href="#about"
             class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
-            >關於我</RouterLink
+            @click.prevent="scrollTo('about')"
+            >關於我</a
           >
-          <RouterLink
-            to="/projects"
+          <a
+            href="#projects"
             class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
-            >作品集</RouterLink
+            @click.prevent="scrollTo('projects')"
+            >作品集</a
+          >
+          <a
+            href="#contact"
+            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            @click.prevent="scrollTo('contact')"
+            >聯絡我</a
           >
         </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
       <!-- Mobile menu, show/hide based on menu open state. -->
       <div class="lg:hidden" role="dialog" aria-modal="true" v-show="showMenu">
@@ -77,17 +84,23 @@
           <div class="mt-6 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
-                <RouterLink
-                  to="/"
+                <a
+                  href="#about"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  @click="showMenu = false"
-                  >關於我</RouterLink
+                  @click.prevent="scrollTo('about')"
+                  >關於我</a
                 >
-                <RouterLink
-                  to="/projects"
+                <a
+                  href="#projects"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  @click="showMenu = false"
-                  >作品集</RouterLink
+                  @click.prevent="scrollTo('projects')"
+                  >作品集</a
+                >
+                <a
+                  href="#contact"
+                  class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+                  @click.prevent="scrollTo('contact')"
+                  >聯絡我</a
                 >
               </div>
             </div>
@@ -156,14 +169,32 @@
     </div>
   </div>
   <RouterView />
-  <footer class="h-[100px] flex justify-center items-center relative">
+  <footer class="h-[100px] flex flex-col justify-center items-center">
+    <a href="https://github.com/eliowei"
+      ><img src="./assets/github-icon.svg" class="w-10 mb-3"
+    /></a>
     <span class="text-xs">©2025 by Elio Wei rights reserved.</span>
   </footer>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+gsap.registerPlugin(ScrollToPlugin)
 
 const showMenu = ref(false)
+
+const scrollTo = (id) => {
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: {
+      y: `#${id}`,
+      autoKill: true,
+    },
+    ease: 'power2.inOut',
+  })
+  showMenu.value = false
+}
 </script>
