@@ -21,6 +21,11 @@ jobs:
         run: |
           npm install 
           npm run build
+        env:
+          VITE_EMAIL_SERVICE_ID: ${{ secrets.VITE_EMAIL_SERVICE_ID }}
+          VITE_EMAIL_TEMPLATE_ID: ${{ secrets.VITE_EMAIL_TEMPLATE_ID }}
+          VITE_TO_EMAIL_ID: ${{ secrets.VITE_TO_EMAIL_ID }}
+          VITE_EMAIL_PUBLIC_KEY: ${{ secrets.VITE_EMAIL_PUBLIC_KEY }}
       # 步驟三：部署
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
