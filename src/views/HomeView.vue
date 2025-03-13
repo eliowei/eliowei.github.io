@@ -1,25 +1,25 @@
 <template>
   <main>
-    <section id="hero" class="bg-white mb-10" ref="hero">
-      <div class="absolute inset-0 backdrop-blur-sm bg-black/10 top-14 h-full"></div>
+    <section id="hero" class="mb-10 bg-white" ref="hero">
+      <div class="absolute inset-0 top-14 h-full bg-black/10 backdrop-blur-sm"></div>
 
       <div class="hero-content relative z-10">
         <div class="hero-content-section">
           <button class="mb-5 cursor-pointer" @click="scrollToTop">
             <img src="../assets/hacker.png" class="w-15 invert" />
           </button>
-          <span class="hero-text text-white text-5xl">Elio Wei</span>
+          <span class="hero-text text-5xl text-white">Elio Wei</span>
         </div>
       </div>
     </section>
 
-    <section id="about" class="p-10 flex justify-center flex-col items-center">
-      <h2 class="text-3xl font-semibold mb-4">關於我</h2>
-      <div class="p-6 rounded-lg shadow-lg max-w-md text-center">
+    <section id="about" class="flex flex-col items-center justify-center p-10">
+      <h2 class="mb-4 text-3xl font-semibold">關於我</h2>
+      <div class="max-w-md rounded-lg p-6 text-center shadow-lg">
         <img
           src="../assets/profile.jpg"
           alt="個人照片"
-          class="w-32 h-32 mx-auto rounded-full mb-4"
+          class="mx-auto mb-4 h-32 w-32 rounded-full"
         />
         <p>
           你好，我是李柏偉。近期完成泰山職訓局的前端培訓，對前端開發充滿熱情，學習了 Vue.js
@@ -28,30 +28,30 @@
       </div>
     </section>
 
-    <section id="projects" class="p-10 mb-10 bg-white text-center">
-      <h2 class="text-3xl font-semibold mb-4">作品集</h2>
+    <section id="projects" class="mb-10 bg-white p-10 text-center">
+      <h2 class="mb-4 text-3xl font-semibold">作品集</h2>
       <div class="flex w-full">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
+        <div class="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <template v-for="(card, index) of cards" :key="index">
             <div
-              class="bg-white rounded-lg border border-gray-200 relative cursor-pointer group h-[350px] overflow-hidden w-full hover:shadow-lg transition-all duration-300"
+              class="group relative h-[350px] w-full cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
               :class="{ 'pointer-events-none': dialog }"
               @click="onCardClick(card)"
             >
               <img
                 :src="card.image"
                 :alt="card.title"
-                class="w-full h-70 object-cover rounded-t-lg transition-all duration-500 group-hover:h-50"
+                class="h-70 w-full rounded-t-lg object-cover transition-all duration-500 group-hover:h-50"
               />
               <div
                 class="absolute inset-x-6 top-[305px] transition-transform duration-500 group-hover:-translate-y-24"
               >
                 <h3 class="text-2xl font-bold text-gray-800">{{ card.title }}</h3>
-                <p class="text-gray-600 mt-2">{{ card.description }}</p>
+                <p class="mt-2 text-gray-600">{{ card.description }}</p>
                 <a
                   :href="card.github"
                   target="_blank"
-                  class="text-blue-500 font-medium mt-4 inline-block relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-blue-500 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+                  class="relative mt-4 inline-block font-medium text-blue-500 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-blue-500 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
                   >查看 GitHub</a
                 >
               </div>
@@ -63,21 +63,21 @@
 
     <section
       id="contact"
-      class="p-10 bg-white flex justify-center items-center relative"
+      class="relative flex items-center justify-center bg-white p-10"
       ref="contact"
     >
       <div
-        class="bg-white p-10 shadow-lg w-full max-w-xl relative z-5 border-1 sm:mx-5 md:mx-10 lg:mx-auto contact-content"
+        class="contact-content relative z-5 w-full max-w-xl border-1 bg-white p-10 shadow-lg sm:mx-5 md:mx-10 lg:mx-auto"
       >
-        <h2 class="text-3xl font-semibold mb-5">聯絡我</h2>
+        <h2 class="mb-5 text-3xl font-semibold">聯絡我</h2>
 
         <form @submit.prevent="sendEmail" class="space-y-4">
           <div>
-            <label class="block text-sx font-medium text-gray-700">姓名</label>
+            <label class="text-sx block font-medium text-gray-700">姓名</label>
             <input
               v-model="form.name"
               type="text"
-              class="mt-1 pl-2 w-full border border-gray-300 h-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
+              class="mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
           </div>
@@ -87,7 +87,7 @@
             <input
               v-model="form.email"
               type="email"
-              class="mt-1 pl-2 w-full border border-gray-300 h-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
+              class="mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
           </div>
@@ -97,20 +97,20 @@
             <textarea
               v-model="form.message"
               rows="4"
-              class="mt-1 mb-7 block w-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
+              class="mt-1 mb-7 block w-full border border-gray-300 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full font-bold text-blue-600 border-1 border-blue-600 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none duration-200 hover:text-white hover:bg-blue-500 transition-colors cursor-pointer"
+            class="w-full cursor-pointer border-1 border-blue-600 px-4 py-2 font-bold text-blue-600 transition-colors duration-200 hover:bg-blue-500 hover:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             :disabled="loading"
             :class="{ 'bg-blue-600': loading }"
           >
             <div class="flex items-center justify-center">
               <div
-                class="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"
+                class="h-5 w-5 animate-spin rounded-full border-4 border-solid border-white border-t-transparent"
                 v-if="loading"
               ></div>
               <div class="ml-2" :class="{ 'text-white': loading }">
@@ -120,21 +120,21 @@
           </button>
         </form>
       </div>
-      <div class="absolute inset-0 backdrop-blur-sm bg-black/10 h-full contact-filter"></div>
+      <div class="contact-filter absolute inset-0 h-full bg-black/10 backdrop-blur-sm"></div>
     </section>
 
     <div
       id="modal"
-      class="fixed inset-0 bg-black/40 flex justify-center items-center"
+      class="fixed inset-0 flex items-center justify-center bg-black/40"
       v-if="dialog"
       @click="dialog = false"
     >
-      <div class="bg-white pt-3 py-6 rounded-lg shadow-lg max-w-4xl w-full relative" @click.stop>
+      <div class="relative w-full max-w-4xl rounded-lg bg-white py-6 pt-3 shadow-lg" @click.stop>
         <!-- 關閉按鈕 -->
         <div class="grid grid-cols-12">
           <button
             type="button"
-            class="col-start-12 col-span-1 rounded-md p-2.5 text-gray-700 hover:cursor-pointer hover:bg-gray-400/10 transition-all duration-300 hover:rounded-4xl w-12"
+            class="col-span-1 col-start-12 w-12 rounded-md p-2.5 text-gray-700 transition-all duration-300 hover:cursor-pointer hover:rounded-4xl hover:bg-gray-400/10"
             @click="dialog = false"
           >
             <svg
@@ -151,7 +151,7 @@
           </button>
         </div>
         <!-- Modal 內容 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ml-6 overflow-auto h-[444px]">
+        <div class="ml-6 grid h-[444px] grid-cols-1 gap-6 overflow-auto md:grid-cols-2">
           <!-- 左側：預覽圖片 -->
           <div class="h-[400px]">
             <!-- 設定固定容器高度 -->
@@ -180,7 +180,7 @@
                 <img
                   :src="card"
                   alt="圖片預覽"
-                  class="rounded-lg shadow-md max-h-[400px] w-auto object-contain hover:cursor-pointer"
+                  class="max-h-[400px] w-auto rounded-lg object-contain shadow-md hover:cursor-pointer"
                   @click="openLightbox(card, index)"
                 />
               </swiper-slide>
@@ -190,20 +190,20 @@
           <!-- 右側：作品資訊 -->
           <div class="pr-10">
             <h3 id="modal-title" class="text-2xl font-bold">{{ data.title }}</h3>
-            <h4 class="text-lg font-semibold mt-4">說明</h4>
-            <p id="modal-description" class="text-gray-700 mt-2 ml-4" v-html="data.details"></p>
+            <h4 class="mt-4 text-lg font-semibold">說明</h4>
+            <p id="modal-description" class="mt-2 ml-4 text-gray-700" v-html="data.details"></p>
 
-            <h4 class="text-lg font-semibold mt-4">功能</h4>
+            <h4 class="mt-4 text-lg font-semibold">功能</h4>
 
             <template v-for="(feature, index) in data.features" :key="index">
               <h4
-                class="text-lg font-semibold mt-2 ml-4 flex items-center gap-2 cursor-pointer hover:bg-gray-50"
+                class="mt-2 ml-4 flex cursor-pointer items-center gap-2 text-lg font-semibold hover:bg-gray-50"
                 @click="toggleFeatures(index)"
               >
                 {{ index }}
                 <!-- 添加箭頭圖示 -->
                 <svg
-                  class="w-4 h-4 transition-transform duration-300"
+                  class="h-4 w-4 transition-transform duration-300"
                   :class="{ 'rotate-180': expandedFeatures[index] }"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -218,10 +218,10 @@
                 </svg>
               </h4>
               <div
-                class="overflow-hidden transition-all duration-300 ml-8"
+                class="ml-8 overflow-hidden transition-all duration-300"
                 :class="expandedFeatures[index] ? 'max-h-[500px]' : 'max-h-0'"
               >
-                <ul class="list-disc pl-5 mt-2 space-y-2">
+                <ul class="mt-2 list-disc space-y-2 pl-5">
                   <li
                     v-for="(featureInfo, Infoindex) in feature"
                     :key="Infoindex"
@@ -234,7 +234,7 @@
             </template>
 
             <template v-for="(capabilitie, index) in data.capabilities" :key="index">
-              <ul class="list-disc pl-5 mt-2 space-y-2 ml-4">
+              <ul class="mt-2 ml-4 list-disc space-y-2 pl-5">
                 <li class="text-gray-600">
                   {{ capabilitie }}
                 </li>
@@ -246,17 +246,17 @@
               id="modal-link"
               :href="data.page"
               target="_blank"
-              class="mt-4 mr-4 inline-block group relative overflow-hidden rounded border border-gray-200 px-12 py-3 text-sm font-medium text-slate-800 hover:text-slate-600 focus:outline-none active:bg-black active:text-white transition-all duration-300"
+              class="group relative mt-4 mr-4 inline-block overflow-hidden rounded border border-gray-200 px-12 py-3 text-sm font-medium text-slate-800 transition-all duration-300 hover:text-slate-600 focus:outline-none active:bg-black active:text-white"
               v-if="data.show"
             >
               <span
-                class="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-gray-900 transition-all duration-200 group-hover:w-full"
+                class="ease absolute top-0 left-0 h-0 w-0 border-t-2 border-gray-900 transition-all duration-200 group-hover:w-full"
               ></span>
               <span
-                class="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-gray-900 transition-all duration-200 group-hover:h-full"
+                class="ease absolute top-0 right-0 h-0 w-0 border-r-2 border-gray-900 transition-all duration-200 group-hover:h-full"
               ></span>
               <span
-                class="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-gray-900 transition-all duration-200 group-hover:w-full"
+                class="ease absolute right-0 bottom-0 h-0 w-0 border-b-2 border-gray-900 transition-all duration-200 group-hover:w-full"
               ></span>
               <span
                 class="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-gray-900 transition-all duration-200 group-hover:h-full"
@@ -267,16 +267,16 @@
               id="modal-link"
               :href="data.github"
               target="_blank"
-              class="mt-4 inline-block group relative overflow-hidden rounded border border-gray-200 px-12 py-3 text-sm font-medium text-slate-800 hover:text-slate-600 focus:outline-none active:bg-black active:text-white transition-all duration-300"
+              class="group relative mt-4 inline-block overflow-hidden rounded border border-gray-200 px-12 py-3 text-sm font-medium text-slate-800 transition-all duration-300 hover:text-slate-600 focus:outline-none active:bg-black active:text-white"
             >
               <span
-                class="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-gray-900 transition-all duration-200 group-hover:w-full"
+                class="ease absolute top-0 left-0 h-0 w-0 border-t-2 border-gray-900 transition-all duration-200 group-hover:w-full"
               ></span>
               <span
-                class="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-gray-900 transition-all duration-200 group-hover:h-full"
+                class="ease absolute top-0 right-0 h-0 w-0 border-r-2 border-gray-900 transition-all duration-200 group-hover:h-full"
               ></span>
               <span
-                class="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-gray-900 transition-all duration-200 group-hover:w-full"
+                class="ease absolute right-0 bottom-0 h-0 w-0 border-b-2 border-gray-900 transition-all duration-200 group-hover:w-full"
               ></span>
               <span
                 class="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-gray-900 transition-all duration-200 group-hover:h-full"
@@ -290,15 +290,15 @@
     <!-- 燈箱背景 -->
     <div
       v-if="isLightbox"
-      class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center cursor-pointer transition-all duration-300"
+      class="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/90 transition-all duration-300"
       @click="closeLightbox"
     >
       <!-- 關閉按鈕 -->
       <button
-        class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+        class="absolute top-4 right-4 text-white transition-colors hover:text-gray-300"
         @click="closeLightbox"
       >
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -318,10 +318,10 @@
 
       <!-- 導航按鈕 -->
       <button
-        class="absolute left-4 text-white hover:text-gray-300 transition-colors"
+        class="absolute left-4 text-white transition-colors hover:text-gray-300"
         @click.stop="prevImage"
       >
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -331,24 +331,24 @@
         </svg>
       </button>
       <button
-        class="absolute right-4 text-white hover:text-gray-300 transition-colors"
+        class="absolute right-4 text-white transition-colors hover:text-gray-300"
         @click.stop="nextImage"
       >
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
     <!-- 側邊導覽選單 -->
-    <div class="fixed right-8 top-30 flex flex-col h-45 justify-around z-40">
+    <div class="fixed top-30 right-8 z-40 flex h-45 flex-col justify-around">
       <button
-        class="cursor-pointer border-2 border-gray-700 rounded-full h-3 w-3 hover:bg-gray-700 transition-all duration-300 group"
+        class="group h-3 w-3 cursor-pointer rounded-full border-2 border-gray-700 transition-all duration-300 hover:bg-gray-700"
         v-for="(section, index) in sections"
         :key="index"
         @click="scrollToSection(section.id)"
       >
         <span
-          class="absolute right-7 -translate-y-1/2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm text-gray-700 transition-all duration-300 pointer-events-none"
+          class="pointer-events-none absolute right-7 -translate-y-1/2 text-sm whitespace-nowrap text-gray-700 opacity-0 transition-all duration-300 group-hover:opacity-100"
         >
           {{ section.name }}
         </span>

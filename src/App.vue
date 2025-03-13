@@ -10,7 +10,7 @@
         <div class="flex lg:hidden">
           <button
             type="button"
-            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:cursor-pointer hover:bg-gray-400/10 transition-all duration-300"
+            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 transition-all duration-300 hover:cursor-pointer hover:bg-gray-400/10"
             @click="showMenu = true"
           >
             <span class="sr-only">Open main menu</span>
@@ -31,22 +31,22 @@
             </svg>
           </button>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12 mr-10">
+        <div class="mr-10 hidden lg:flex lg:gap-x-12">
           <a
             href="#about"
-            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-gray-900 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
             @click.prevent="scrollTo('about')"
             >關於我</a
           >
           <a
             href="#projects"
-            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-gray-900 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
             @click.prevent="scrollTo('projects')"
             >作品集</a
           >
           <a
             href="#contact"
-            class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+            class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-gray-900 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
             @click.prevent="scrollTo('contact')"
             >聯絡我</a
           >
@@ -65,7 +65,7 @@
             </a>
             <button
               type="button"
-              class="-m-2.5 rounded-md p-2.5 text-gray-700 hover:cursor-pointer hover:bg-gray-400/10 transition-all duration-300 hover:rounded-4xl"
+              class="-m-2.5 rounded-md p-2.5 text-gray-700 transition-all duration-300 hover:cursor-pointer hover:rounded-4xl hover:bg-gray-400/10"
               @click="showMenu = false"
             >
               <svg
@@ -98,7 +98,7 @@
                 >
                 <a
                   href="#contact"
-                  class="text-sm/6 font-semibold text-gray-900 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gray-900 after:transition-transform after:ease-out after:duration-300 hover:after:scale-x-100 after:transform-gpu"
+                  class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-gray-900 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
                   @click.prevent="scrollTo('contact')"
                   >聯絡我</a
                 >
@@ -169,9 +169,9 @@
     </div>
   </div>
   <RouterView />
-  <footer class="h-[100px] flex flex-col justify-center items-center">
+  <footer class="flex h-[100px] flex-col items-center justify-center">
     <a href="https://github.com/eliowei"
-      ><img src="./assets/github-icon.svg" class="w-10 mb-3"
+      ><img src="./assets/github-icon.svg" class="mb-3 w-10"
     /></a>
     <span class="text-xs">©2025 by Elio Wei rights reserved.</span>
   </footer>
