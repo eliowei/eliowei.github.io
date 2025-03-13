@@ -13,9 +13,9 @@
       </div>
     </section>
 
-    <section id="about" class="p-10 flex justify-center">
+    <section id="about" class="p-10 flex justify-center flex-col items-center">
+      <h2 class="text-3xl font-semibold mb-4">關於我</h2>
       <div class="p-6 rounded-lg shadow-lg max-w-md text-center">
-        <h2 class="text-3xl font-semibold mb-4">關於我</h2>
         <img
           src="../assets/profile.jpg"
           alt="個人照片"
