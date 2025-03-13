@@ -593,7 +593,6 @@ const scrollToSection = (id) => {
       duration: 1,
       scrollTo: {
         y: 0,
-        autoKill: true,
       },
       ease: 'power2.inOut',
     })
@@ -604,7 +603,6 @@ const scrollToSection = (id) => {
     duration: 1,
     scrollTo: {
       y: `#${id}`,
-      autoKill: true,
     },
     ease: 'power2.inOut',
   })
@@ -645,7 +643,6 @@ const scrollToTop = () => {
     duration: 1,
     scrollTo: {
       y: 0,
-      autoKill: true,
     },
     ease: 'power2.inOut',
   })
