@@ -588,10 +588,22 @@ const form = ref({
 const loading = ref(false)
 
 const scrollToSection = (id) => {
+  if (id === 'hero') {
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: 0,
+        autoKill: true,
+      },
+      ease: 'power2.inOut',
+    })
+    return
+  }
+
   gsap.to(window, {
     duration: 1,
     scrollTo: {
-      y: id === 'hero' ? 0 : `#${id}`,
+      y: `#${id}`,
       autoKill: true,
     },
     ease: 'power2.inOut',
