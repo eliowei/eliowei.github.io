@@ -77,7 +77,7 @@
             <input
               v-model="form.name"
               type="text"
-              class="mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              class="mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:invalid:border-red-600 focus:invalid:ring-red-600"
               required
             />
           </div>
@@ -87,7 +87,7 @@
             <input
               v-model="form.email"
               type="email"
-              class="mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              class="focus:invalid:border-red mt-1 h-10 w-full border border-gray-300 pl-2 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:invalid:border-red-600 focus:invalid:ring-red-600"
               required
             />
           </div>
@@ -97,16 +97,20 @@
             <textarea
               v-model="form.message"
               rows="4"
-              class="mt-1 mb-7 block w-full border border-gray-300 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              class="mt-1 mb-7 block w-full border border-gray-300 transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:invalid:border-red-600 focus:invalid:ring-red-600"
               required
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full cursor-pointer border-1 border-blue-600 px-4 py-2 font-bold text-blue-600 transition-colors duration-200 hover:bg-blue-500 hover:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            class="w-full border-1 border-blue-600 px-4 py-2 font-bold text-blue-600 transition-colors duration-200 hover:bg-blue-500 hover:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             :disabled="loading"
-            :class="{ 'bg-blue-600': loading }"
+            :class="{
+              'bg-blue-600': loading,
+              'cursor-pointer': !loading,
+              'pointer-events-none': loading,
+            }"
           >
             <div class="flex items-center justify-center">
               <div

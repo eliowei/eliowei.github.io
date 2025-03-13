@@ -98,7 +98,7 @@
                 >
                 <a
                   href="#contact"
-                  class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform-gpu after:bg-gray-900 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   @click.prevent="scrollTo('contact')"
                   >聯絡我</a
                 >
