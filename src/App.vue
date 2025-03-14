@@ -1,5 +1,25 @@
 <template>
-  <div class="bg-white">
+  <transition name="fade">
+    <section
+      class="loading-overlay fixed inset-0 z-[9999] flex h-full w-full items-center justify-center bg-black"
+      v-if="isFirstLoad || !isPageReady"
+    >
+      <div
+        class="absolute top-1/2 left-1/2 z-100000 flex -translate-x-1/2 -translate-y-1/2 transform-gpu flex-wrap"
+      >
+        <div class="loader">
+          <span style="--n: 1">l</span>
+          <span style="--n: 2">o</span>
+          <span style="--n: 3">a</span>
+          <span style="--n: 4">d</span>
+          <span style="--n: 5">i</span>
+          <span style="--n: 6">n</span>
+          <span style="--n: 7">g</span>
+        </div>
+      </div>
+    </section>
+  </transition>
+  <div class="bg-white" v-if="!isFirstLoad && isPageReady">
     <header class="absolute inset-x-0 top-0 z-50">
       <nav class="flex items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
@@ -168,8 +188,11 @@
       </div>
     </div>
   </div>
-  <RouterView />
-  <footer class="flex h-[100px] flex-col items-center justify-center">
+  <RouterView v-if="!isFirstLoad && isPageReady" />
+  <footer
+    class="flex h-[100px] flex-col items-center justify-center"
+    v-if="!isFirstLoad && isPageReady"
+  >
     <a href="https://github.com/eliowei"
       ><img src="./assets/github-icon.svg" class="mb-3 w-10"
     /></a>
@@ -177,14 +200,89 @@
   </footer>
 </template>
 
+<style>
+/* 淡入淡出效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  background: black;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  backdrop-filter: blur(0);
+  background: black;
+}
+
+.loader {
+  color: dodgerblue;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  width: 40em;
+  height: 3em;
+  animation: change-color 10s linear infinite;
+}
+
+.loader span {
+  animation: moving 2s linear infinite;
+  animation-delay: calc((var(--n) - 10) * 0.2s);
+  position: absolute;
+  height: 3em;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes change-color {
+  to {
+    filter: hue-rotate(1turn);
+  }
+}
+
+@keyframes moving {
+  0% {
+    filter: opacity(0);
+    transform: rotate(-180deg);
+    left: 100%;
+  }
+
+  33% {
+    filter: opacity(1);
+    transform: rotate(0deg);
+    left: 60%;
+  }
+
+  66% {
+    filter: opacity(1);
+    transform: rotate(0deg);
+    left: 40%;
+  }
+
+  100% {
+    filter: opacity(0);
+    transform: rotate(180deg);
+    left: 0;
+  }
+}
+</style>
+
 <script setup>
-import { ref } from 'vue'
-import { RouterView } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { RouterView, useRouter } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 gsap.registerPlugin(ScrollToPlugin)
 
 const showMenu = ref(false)
+const router = useRouter()
+const isFirstLoad = ref(true)
+const isPageReady = ref(false)
 
 const scrollTo = (id) => {
   gsap.to(window, {
@@ -197,4 +295,17 @@ const scrollTo = (id) => {
   })
   showMenu.value = false
 }
+
+onMounted(() => {
+  if (isFirstLoad.value) {
+    // 監聽路由是否完成載入
+    router.isReady().then(() => {
+      isPageReady.value = true
+
+      setTimeout(() => {
+        isFirstLoad.value = false
+      }, 1500)
+    })
+  }
+})
 </script>

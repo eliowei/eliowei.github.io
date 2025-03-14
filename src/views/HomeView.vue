@@ -376,8 +376,9 @@
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 100%;
+  background-position: 50% 0%; /* 確保初始位置正確 */
   background-image: url('../assets/hero.jpg');
+  transition: background-position 0.3s ease; /* 添加平滑過渡 */
 }
 
 .hero-content {
@@ -652,17 +653,24 @@ const scrollToTop = () => {
   })
 }
 onMounted(() => {
-  gsap.to(hero.value, {
-    scrollTrigger: {
-      trigger: hero.value,
-      start: 'top 50%',
-      end: 'bottom 0%',
-      scrub: true,
-      markers: false,
+  gsap.fromTo(
+    hero.value,
+    {
+      backgroundPosition: '50% 0%', // 初始位置
     },
-    backgroundPosition: '50% -200%',
-    ease: 'none',
-  })
+    {
+      scrollTrigger: {
+        trigger: hero.value,
+        start: 'top top', // 改為從頂部開始
+        end: 'bottom top',
+        scrub: 1, // 添加平滑效果
+        markers: false,
+        invalidateOnRefresh: true, // 確保重新整理時重新計算
+      },
+      backgroundPosition: '50% 100%', // 結束位置
+      ease: 'none',
+    },
+  )
 
   gsap.to(contact.value, {
     scrollTrigger: {
