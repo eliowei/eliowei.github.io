@@ -129,7 +129,7 @@
 
     <div
       id="modal"
-      class="fixed inset-0 flex items-center justify-center bg-black/40"
+      class="fixed inset-0 z-100 flex items-center justify-center bg-black/40"
       v-if="dialog"
       @click="dialog = false"
     >
