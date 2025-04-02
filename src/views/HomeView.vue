@@ -294,7 +294,7 @@
     <!-- 燈箱背景 -->
     <div
       v-if="isLightbox"
-      class="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/90 transition-all duration-300"
+      class="fixed inset-0 z-101 flex cursor-pointer items-center justify-center bg-black/90 transition-all duration-300"
       @click="closeLightbox"
     >
       <!-- 關閉按鈕 -->
