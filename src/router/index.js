@@ -9,7 +9,7 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: {
-        title: 'Elio Wei | 關於我',
+        title: 'Elio Wei | 個人網站',
       },
     },
   ],
